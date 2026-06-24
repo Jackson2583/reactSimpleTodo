@@ -1,40 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CreateForm from "./CreateForm";
 import Todo from "./Todo";
 
 function TodoWrapper() {
-  const [todos, setTodos] = useState([
-    {
-      content: "打掃廁所",
-      id: Math.random(),
-      isCompleted: false,
-      isEditing: false,
-    },
-    {
-      content: "寫作業",
-      id: Math.random(),
-      isCompleted: true,
-      isEditing: false,
-    },
-    {
-    content: "購買晚餐",
-    id: crypto.randomUUID(),
-    createdAt: "2025/06/24 20:10",
-    isCompleted: false,
-    isEditing: false,
-    },
-  ]);
+  // 1. 初始化 State：先嘗試從 LocalStorage 讀取資料
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("shengjie_todos");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    } else {
+      // 如果沒有儲存過的資料，給予預設值 (展示你客製化的屬性)
+      return [
+        {
+          content: "購買晚餐",
+          id: crypto.randomUUID(),
+          createdAt: new Date().toLocaleString("zh-TW", { hour12: false }),
+          isCompleted: false,
+          isEditing: false,
+        },
+      ];
+    }
+  });
+
+  // 2. 資料持久化：只要 todos 發生改變，就同步寫入 LocalStorage
+  useEffect(() => {
+    localStorage.setItem("shengjie_todos", JSON.stringify(todos));
+  }, [todos]);
+
   const addTodo = (content) => {
     setTodos([
       ...todos,
       {
         content,
-        id: Math.random(),
+        // 全面改用 UUID，避免 ID 重複的 Bug
+        id: crypto.randomUUID(),
+        // 動態產生當下的時間
+        createdAt: new Date().toLocaleString("zh-TW", { hour12: false }),
         isCompleted: false,
         isEditing: false,
       },
     ]);
   };
+
   const deleteTodo = (id) => {
     setTodos(
       todos.filter((todo) => {
@@ -42,6 +49,7 @@ function TodoWrapper() {
       })
     );
   };
+
   const toggleCompleted = (id) => {
     setTodos(
       todos.map((todo) => {
@@ -51,6 +59,7 @@ function TodoWrapper() {
       })
     );
   };
+
   const toggleIsEditing = (id) => {
     setTodos(
       todos.map((todo) => {
@@ -58,6 +67,7 @@ function TodoWrapper() {
       })
     );
   };
+
   const editTodo = (id, newContent) => {
     setTodos(
       todos.map((todo) => {
@@ -67,6 +77,7 @@ function TodoWrapper() {
       })
     );
   };
+
   return (
     <div className="wrapper">
       <h1>聖傑的待辦事項</h1>
@@ -86,4 +97,5 @@ function TodoWrapper() {
     </div>
   );
 }
+
 export default TodoWrapper;

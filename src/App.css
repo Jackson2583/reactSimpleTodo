@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   background-color: #3b36cc;
   color: white;
@@ -11,6 +12,7 @@ body {
   justify-content: center;
   font-family: sans-serif;
 }
+
 .wrapper {
   width: 450px;
   padding: 30px;
@@ -19,6 +21,7 @@ body {
   margin-top: 20px;
   text-align: center;
 }
+
 .create-form {
   height: 40px;
   width: 100%;
@@ -26,6 +29,7 @@ body {
   border: 1px solid #3b36cc;
   display: flex;
 }
+
 .create-form > input {
   outline: none;
   border: none;
@@ -35,6 +39,7 @@ body {
   height: 100%;
   padding-left: 10px;
 }
+
 .create-form > button {
   border: none;
   background-color: #3636cc;
@@ -43,17 +48,49 @@ body {
   height: 100%;
   cursor: pointer;
 }
+
+/* 待辦事項外框 */
 .todo {
   background-color: #3b36cc;
-  height: 40px;
-  padding: 0 10px;
+  min-height: 40px;
+  padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.completed {
+
+/* 文字區塊排版 */
+.todo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 85%; /* 保留空間給右側圖示 */
+  cursor: pointer;
+  text-align: left;
+}
+
+/* 防呆極端測試：斷行機制 */
+.todo-text p {
+  word-break: break-all;
+  overflow-wrap: break-word;
+  margin: 0;
+}
+
+/* 時間戳記樣式 */
+.timestamp {
+  font-size: 0.75rem;
+  color: #a1a1aa;
+  margin-top: 4px;
+}
+
+.todo-icons {
+  display: flex;
+  align-items: center;
+}
+
+.completed p {
   opacity: 0.4;
   text-decoration: line-through 3px black;
 }
