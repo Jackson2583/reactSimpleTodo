@@ -5,12 +5,18 @@
 }
 
 body {
+  /* 只保留字體設定，移除背景色與 Flex 排版，避免干擾履歷頁面 */
+  font-family: sans-serif;
+}
+
+/* 這是新增的專屬外框，用來取代原本的 body 樣式 */
+.todo-container {
   background-color: #3b36cc;
   color: white;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  font-family: sans-serif;
+  min-height: 100vh; /* 確保紫色背景能填滿整個螢幕高度 */
+  padding-top: 40px; /* 讓 Todo 列表與上方的選單保持一點距離 */
 }
 
 .wrapper {
@@ -18,8 +24,9 @@ body {
   padding: 30px;
   background-color: #1a1a40;
   border-radius: 5px;
-  margin-top: 20px;
+  /* 移除了原本的 margin-top: 20px，改由 .todo-container 統一控制 */
   text-align: center;
+  height: fit-content; /* 確保外框高度隨內容自動調整 */
 }
 
 .create-form {
@@ -66,7 +73,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 85%; /* 保留空間給右側圖示 */
+  max-width: 85%;
   cursor: pointer;
   text-align: left;
 }
