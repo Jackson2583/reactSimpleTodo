@@ -16,6 +16,13 @@ function TodoWrapper() {
       isCompleted: true,
       isEditing: false,
     },
+    {
+    content: "購買晚餐",
+    id: crypto.randomUUID(),
+    createdAt: "2025/06/24 20:10",
+    isCompleted: false,
+    isEditing: false,
+    },
   ]);
   const addTodo = (content) => {
     setTodos([
