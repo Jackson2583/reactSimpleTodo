@@ -284,13 +284,22 @@ export default function Resume({ setCurrentView }) {
                     <li><a onClick={(e) => scrollToSection(e, 'education')}>學歷</a></li>
                     <li><a onClick={(e) => scrollToSection(e, 'skills')}>專業技能</a></li>
                     <li><a onClick={(e) => scrollToSection(e, 'experience')}>領導與經歷</a></li>
-                    {/* 新增跳轉至專案的按鈕，加上亮黃色點綴 */}
+                    {/* 跳轉至 Todo List 專案 */}
                     <li>
                         <a 
                             onClick={() => setCurrentView('todo')}
                             style={{ color: '#f1c40f' }}
                         >
                             ✨ 待辦事項
+                        </a>
+                    </li>
+                    {/* 新增：跳轉至 探索小工具 專案 */}
+                    <li>
+                        <a 
+                            onClick={() => setCurrentView('explore')}
+                            style={{ color: '#1abc9c' }}
+                        >
+                            🚀 探索小工具
                         </a>
                     </li>
                 </ul>
