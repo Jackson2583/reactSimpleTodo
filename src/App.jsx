@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import "./App.css";
 import TodoWrapper from "./components/TodoWrapper";
 import Resume from "./components/Resume"; 
+// 👇 第一步：確保有把剛剛做好的 Explore 元件匯入進來！
+import Explore from "./components/Explore"; 
 
 function App() {
-  // 預設改為顯示 'resume'，讓履歷成為首頁
+  // 預設顯示 'resume' (履歷首頁)
   const [currentView, setCurrentView] = useState("resume");
 
   return (
     <div style={{ width: "100%", minHeight: "100vh" }}>
       
+      {/* 1. 待辦事項畫面 */}
       {currentView === "todo" && (
          <div className="todo-container" style={{ position: "relative" }}>
-           {/* 在 Todo 畫面的左上角加一個返回按鈕 */}
            <button 
              onClick={() => setCurrentView("resume")}
              style={{
@@ -35,9 +37,14 @@ function App() {
          </div>
       )}
       
+      {/* 2. 個人履歷畫面 */}
       {currentView === "resume" && (
-         // 將 setCurrentView 當作 props 傳遞給 Resume 元件，讓履歷裡面的選單可以控制切換
          <Resume setCurrentView={setCurrentView} />
+      )}
+
+      {/* 👇 第二步：新增這段判斷式！當點擊探索小工具時，顯示 Explore 畫面 */}
+      {currentView === "explore" && (
+         <Explore setCurrentView={setCurrentView} />
       )}
 
     </div>
