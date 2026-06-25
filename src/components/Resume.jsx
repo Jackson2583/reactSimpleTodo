@@ -299,7 +299,7 @@ export default function Resume({ setCurrentView }) {
                             onClick={() => setCurrentView('explore')}
                             style={{ color: '#1abc9c' }}
                         >
-                            🚀 探索小工具
+                            🚀 每日一籤
                         </a>
                     </li>
                 </ul>
