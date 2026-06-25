@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 // 將陣列移到元件外部，避免 React 重新渲染時重複建立（效能優化）
 const texts = ["具備實作能力的理工人", "IoT 物聯網系統開發者", "活動統籌與執行能手", "跨領域溝通者"];
 
-// 直接在這裡加上 export default 匯出此元件
-export default function Resume() {
+// 這裡加上 { setCurrentView } 來接收 App.jsx 傳遞過來的切換功能
+export default function Resume({ setCurrentView }) {
     const [text, setText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const [loopNum, setLoopNum] = useState(0);
@@ -34,7 +34,7 @@ export default function Resume() {
 
         let timer = setTimeout(handleType, typingSpeed);
         return () => clearTimeout(timer);
-    }, [text, isDeleting, loopNum]); // 移除了 texts 依賴，因為它現在是外部常數
+    }, [text, isDeleting, loopNum]);
 
     const scrollToSection = (e, id) => {
         e.preventDefault();
@@ -284,6 +284,15 @@ export default function Resume() {
                     <li><a onClick={(e) => scrollToSection(e, 'education')}>學歷</a></li>
                     <li><a onClick={(e) => scrollToSection(e, 'skills')}>專業技能</a></li>
                     <li><a onClick={(e) => scrollToSection(e, 'experience')}>領導與經歷</a></li>
+                    {/* 新增跳轉至專案的按鈕，加上亮黃色點綴 */}
+                    <li>
+                        <a 
+                            onClick={() => setCurrentView('todo')}
+                            style={{ color: '#f1c40f' }}
+                        >
+                            ✨ 待辦事項 (作品)
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
