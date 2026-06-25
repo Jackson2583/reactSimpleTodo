@@ -290,7 +290,7 @@ export default function Resume({ setCurrentView }) {
                             onClick={() => setCurrentView('todo')}
                             style={{ color: '#f1c40f' }}
                         >
-                            ✨ 待辦事項 (作品)
+                            ✨ 待辦事項
                         </a>
                     </li>
                 </ul>
